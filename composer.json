@@ -1,0 +1,14 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Julio\\Percentage\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^7.3",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8"
+    }
+}
