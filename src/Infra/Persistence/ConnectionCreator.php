@@ -4,6 +4,12 @@ namespace Julio\Percentage\Infra\Persistence;
 use PDO;
 
 class ConnectionCreator {
+
+    /**
+     * Create one connection with PDO
+     * 
+     * @return the PDO connection
+     */
     public static function createConnection(): PDO {
     $path = __DIR__ . '/../../../data.db';
     $connection = new PDO("sqlite:$path");
