@@ -54,8 +54,8 @@ class Percentage {
         return $valueDecreased;
     }
 
-    // public function saveHistory(User $user): bool {
-    //     # todo
-    //     return true;
-    // }
+    public function saveHistory(User $user): bool {
+        # todo
+        return true;
+    }
 }

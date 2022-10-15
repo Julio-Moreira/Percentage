@@ -20,6 +20,6 @@ class ConnectionCreator {
 }
 
 // $conn = ConnectionCreator::createConnection();
-// $conn->exec('CREATE TABLE historyNumberModify (account TEXT, result INTEGER, user TEXT, FOREIGN KEY (user) REFERENCES user(id));');
-// $conn->exec('CREATE TABLE historyNumberBased (account TEXT, result INTEGER, user TEXT, FOREIGN KEY (user) REFERENCES user(id));');
 // $conn->exec('CREATE TABLE user (id INTEGER PRIMARY KEY, name TEXT, count INTEGER);');
+// $conn->exec('CREATE TABLE history (account TEXT, result INTEGER, user TEXT, FOREIGN KEY (user) REFERENCES user(id));');
+// $conn->exec("INSERT INTO user VALUES (1, 'Julio', 2)");
