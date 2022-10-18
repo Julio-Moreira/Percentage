@@ -14,6 +14,6 @@
     </testsuites>
 
     <logging>
-        <log type="testdox-text" target="testdox.txt" />
+        <log type="testdox-text" target="resultTest.txt" />
     </logging>
 </phpunit>

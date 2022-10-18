@@ -11,9 +11,9 @@ class ComposerStaticInit16914739f75cfb49e904a639f4537048
     );
 
     public static $prefixLengthsPsr4 = array (
-        'J' => 
+        'j' => 
         array (
-            'Julio\\Percentage\\' => 17,
+            'julio\\percentage\\' => 17,
         ),
         'D' => 
         array (
@@ -23,7 +23,7 @@ class ComposerStaticInit16914739f75cfb49e904a639f4537048
     );
 
     public static $prefixDirsPsr4 = array (
-        'Julio\\Percentage\\' => 
+        'julio\\percentage\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),

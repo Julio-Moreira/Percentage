@@ -1,7 +1,7 @@
 <?php
-namespace Julio\Percentage\Domain\Repository;
+namespace  julio\percentage\Domain\Repository;
 
-use Julio\Percentage\Domain\Model\User;
+use  julio\percentage\Domain\Model\User;
 require_once '../../../vendor/autoload.php';
 
 class PercentageRepository {

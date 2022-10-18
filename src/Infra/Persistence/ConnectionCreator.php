@@ -1,5 +1,5 @@
 <?php
-namespace Julio\Percentage\Infra\Persistence;
+namespace  julio\percentage\Infra\Persistence;
 
 use PDO;
 

@@ -1,5 +1,5 @@
 <?php
-namespace Julio\Percentage\Domain\Model;
+namespace  julio\percentage\Domain\Model;
 
 class Percentage {
     private string $history = '';
