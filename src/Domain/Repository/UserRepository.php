@@ -10,7 +10,9 @@ class UserRepository {
         $this->conn = $connection;
     }
 
-    /** Get all users saved in db */
+    /** 
+     * Get all users saved in db
+     */
     public function selectAllUsers(): array {
         $statement = $this->conn->query('SELECT * FROM user;');
         $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
@@ -18,26 +20,56 @@ class UserRepository {
         return $result;
     }
 
-    public function getHistoryByUser(User $user) {
-        
-    }
-
-    public function insertUser(User $user) {
-        # code...
+    /**
+     * insert new user on db
+     */
+    public function insertUser(User $user): void {
+        $statement = $this->conn->prepare('INSERT INTO user VALUES (:id, :name, 0)');
+        $statement->execute([
+            ':id' => $user->getId(),
+            ':name' => $user->getName()
+        ]);
     }
 
     /** 
      * Confer if the user exists 
-     * 
-     * @return true if user exists or false if not exists
     */
-    public function userExists(User $user): bool {
+    public function userExists(int $id): bool {
         $statement = $this->conn->prepare('SELECT count(*) FROM user WHERE id = ?');
-        $statement->bindValue(1, $user->getId(), \PDO::PARAM_INT);
+        $statement->bindValue(1, $id, \PDO::PARAM_INT);
         $statement->execute();
 
         $userCount = $statement->fetchColumn(0);
 
         return $userCount >= 1 ? true : false;
+    }
+
+    /**
+     * Get user accounts saved on db
+     */
+    public function getHistoryOfUser(User $user): array {
+        $statement = $this->conn->prepare('SELECT h.account, h.result, u.id 
+                                                  FROM history AS h 
+                                                  JOIN user AS u ON h.user = u.id
+                                                  WHERE u.id = ?;');
+
+        $statement->bindValue(1, $user->getId(), \PDO::PARAM_INT);
+        $statement->execute();
+
+        $historyDataList = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $this->hydrateHistoryList($historyDataList);
+    }
+
+    private function hydrateHistoryList($historyDataList): array {
+        $history = [];
+
+        foreach ($historyDataList as $historyData) {
+            $history[] = [
+                $historyData['account'] . " = " . $historyData['result'],
+                $historyData['id']
+            ];
+        }
+
+        return $history;
     }
 }

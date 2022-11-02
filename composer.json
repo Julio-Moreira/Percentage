@@ -12,6 +12,6 @@
         "phpunit/phpunit": "^8"
     },
     "scripts": {
-        "unitTest": ""   
+        "": ""   
     }
 }

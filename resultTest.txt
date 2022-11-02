@@ -1,5 +1,6 @@
 User Repository (julio\percentage\test\Domain\Repository\UserRepository)
  [x] Get all users
- [x] User exist
- [ ] User history
+ [x] User exist with data set #0
+ [x] User history with data set #0
+ [x] Insert user
 
