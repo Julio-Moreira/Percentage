@@ -46,7 +46,7 @@ class PercentageRepository {
             $history[] = [
                     $historyDataRow['account'],
                     $historyDataRow['result'],
-                    new User($historyDataRow['name'], $historyDataRow['id'])
+                    new User($historyDataRow['name'], $historyDataRow['id'], $this->conn)
             ];            
         }
 

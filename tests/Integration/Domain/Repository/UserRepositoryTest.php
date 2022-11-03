@@ -43,7 +43,7 @@ class UserRepositoryTest extends TestCase {
     
     /** @dataProvider UsersProvider */
     public function testUserExist($julioUser) {
-        $userThatNotExist = new User('Sla', 4);        
+        $userThatNotExist = new User('Sla', 4, self::$conn);        
 
         $resultTrue = $this->userRepository
                            ->userExists($julioUser->getId());
@@ -70,7 +70,10 @@ class UserRepositoryTest extends TestCase {
 
     public function testInsertUser() {
         $newUser = new User('João', 3);
-        $this->userRepository->insertUser($newUser);
+        $this->userRepository->insertUser(
+            $newUser->getName(), 
+            $newUser->getId()
+        );
         $users = $this->userRepository->selectAllUsers();
         
         self::assertTrue($this->userRepository

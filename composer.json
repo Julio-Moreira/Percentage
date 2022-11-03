@@ -12,6 +12,11 @@
         "phpunit/phpunit": "^8"
     },
     "scripts": {
-        "": ""   
+        "int-test": "vendor/bin/phpunit --testsuite integration",
+        "unit-test": "vendor/bin/phpunit --testsuite unit",
+        "test": [
+            "@int-test",
+            "@unit-test"
+        ]
     }
 }

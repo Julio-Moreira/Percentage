@@ -23,11 +23,11 @@ class UserRepository {
     /**
      * insert new user on db
      */
-    public function insertUser(User $user): void {
+    public function insertUser(string $name, int $id): void {
         $statement = $this->conn->prepare('INSERT INTO user VALUES (:id, :name, 0)');
         $statement->execute([
-            ':id' => $user->getId(),
-            ':name' => $user->getName()
+            ':id' => $id,
+            ':name' => $name
         ]);
     }
 
