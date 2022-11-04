@@ -65,7 +65,7 @@ class UserRepository {
 
         foreach ($historyDataList as $historyData) {
             $history[] = [
-                $historyData['account'] . " = " . $historyData['result'],
+                "{$historyData['account']} = {$historyData['result']}",
                 $historyData['id']
             ];
         }

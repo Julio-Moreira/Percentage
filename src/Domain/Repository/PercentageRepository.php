@@ -2,7 +2,6 @@
 namespace  julio\percentage\Domain\Repository;
 
 use  julio\percentage\Domain\Model\User;
-require_once '../../../vendor/autoload.php';
 
 class PercentageRepository {
     private \PDO $conn;

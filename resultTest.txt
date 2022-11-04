@@ -1,3 +1,7 @@
+Percentage Repository (julio\percentage\test\Domain\Repository\PercentageRepository)
+ [x] Save history of user
+ [x] All history
+
 User Repository (julio\percentage\test\Domain\Repository\UserRepository)
  [x] Get all users
  [x] User exist with data set #0
