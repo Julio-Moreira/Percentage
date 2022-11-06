@@ -1,6 +1,9 @@
 <?php
 namespace  julio\percentage\Domain\Model;
 
+use julio\percentage\Domain\Repository\PercentageRepository;
+use julio\percentage\Infra\Persistence\ConnectionCreator;
+
 class Percentage {
     private string $history = '';
     
@@ -11,7 +14,7 @@ class Percentage {
      */
     public function calculatePercentageToNumber(int $initialNumber, int $percentage): int {
         $result = $initialNumber * ( $percentage / 100 );
-        $this->history += "$percentage\% of $initialNumber = $result | ";
+        $this->history .= "$percentage\% of $initialNumber = $result | ";
 
         return $result;
     }
@@ -23,7 +26,7 @@ class Percentage {
      */
     public function calculateNumberToPercentage(int $initialNumber, int $number): int {
         $result = $number * ( 100 / $initialNumber );
-        $this->history += "$number of $initialNumber = $result | ";
+        $this->history .= "$number of $initialNumber = $result | ";
 
         return $result;
     }
@@ -36,7 +39,7 @@ class Percentage {
     public function calculatePercentageIncrease(int $initialNumber, int $percentageIncrease): int {
         $valueOfPercentage = $initialNumber * ( $percentageIncrease / 100 );
         $valueIncreased = $initialNumber + $valueOfPercentage;
-        $this->history  += "$initialNumber increased $percentageIncrease = $valueIncreased | ";
+        $this->history  .= "$initialNumber increased $percentageIncrease = $valueIncreased | ";
 
         return $valueIncreased;
     }
@@ -49,13 +52,24 @@ class Percentage {
     public function calculatePercentageDecrease(int $initialNumber, int $percentageDecrease): int {
         $valueOfPercentage = $initialNumber * ( $percentageDecrease / 100 );
         $valueDecreased = $initialNumber - $valueOfPercentage;
-        $this->history  += "$initialNumber decreased $percentageDecrease = $valueDecreased | ";
+        $this->history  .= "$initialNumber decreased $percentageDecrease = $valueDecreased | ";
 
         return $valueDecreased;
     }
 
+    public function getHistory() {
+        return explode(' | ', $this->history);
+    }
+
     public function saveHistory(User $user): bool {
-        # todo
+        $percentageRepository = new PercentageRepository(ConnectionCreator::createConnection());
+        $historyInArray = explode(' | ', $this->history);
+        $accountInArray = array_map(fn($item) => explode(' = ', $item), $historyInArray);
+
+        foreach ($accountInArray as $Account) {
+            $percentageRepository->saveHistory($Account[0], $Account[1], $user);
+        }
+
         return true;
     }
 }
